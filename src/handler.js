@@ -42,7 +42,7 @@ const addNoteHandler = (request, h) => {
 };
 
 const getAllNotesHandler = () => ({
-  status: `succsess`,
+  status: `success`,
   data: {
     notes,
   },
@@ -55,7 +55,7 @@ const getNoteByIdHandler = (request, h) => {
 
   if (note !== undefined) {
     return {
-      status: "succsess",
+      status: 'success',
       data: {
         note,
       },
@@ -83,15 +83,22 @@ const editNoteByIdHandler = (request, h) => {
       tags,
       body,
       updatedAt,
+      
     };
 
     const response = h.response({
-      status: "fail",
-      message: "Fail to update notes, Id undefined",
+      status: "Succsess",
+      message: "Note has been updated",
     });
-    response.code(404);
     return response;
   }
+
+  const response = h.response({
+    status: "Fail",
+    message: "Note failed to update, id undifined",
+  });
+  response.code(500);
+  return response;
 };
 
 const deleteNoteByIdHandler = (request, h) => {
